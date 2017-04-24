@@ -11,14 +11,6 @@ class Lit expr where
         :: LitCxt expr t
         => t -> expr t
 
-class Eval expr where
-    type EvalCxt expr t :: Constraint
-    type EvalCxt expr t = ()
-    type EvalResult expr t :: *
-    eval
-        :: EvalCxt expr t
-        => expr t -> EvalResult expr t
-
 class Func expr where
     type FuncCxt expr t0 t1 :: Constraint
     type FuncCxt expr t0 t1 = ()
@@ -58,14 +50,6 @@ class Fix expr where
     fix
         :: FixCxt expr t
         => expr (t -> t) -> expr t
-
-class Exec stmt where
-    type ExecCxt stmt t :: Constraint
-    type ExecCxt stmt t = ()
-    type ExecResult stmt t :: *
-    exec
-        :: ExecCxt stmt t
-        => stmt t -> ExecResult stmt t
 
 class Ref m where
     type RefType m :: * -> *
